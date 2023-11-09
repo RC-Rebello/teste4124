@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="calculator">
+    <h2>Calculadora</h2>
+    
+    <label for="atributoOficios">Valor do Atributo usado para Ofícios:</label>
+    <input type="number" id="atributoOficios" placeholder="Digite o valor do atributo para Ofícios">
+
+    <label for="adicionaisOficios">Quantos Slots de Ofícios por meta alcançada:</label>
+    <input type="number" id="adicionaisOficios" placeholder="Digite a quantidade de slots adicionais">
+
+    <label for="atributoVDA">Valor do atributo usado VDA:</label>
+    <input type="number" id="atributoVDA" placeholder="Digite o valor do atributo VDA">
+
+    <label for="adicionaisVDA">Quantos Slots de VDA por meta alcançada:</label>
+    <input type="number" id="adicionaisVDA" placeholder="Digite a quantidade de slots adicionais VDA">
+
+    <label for="piqueComoAbelha">Quantos Pique como abelha tem?</label>
+    <input type="number" id="piqueComoAbelha" placeholder="Digite a quantidade de Pique como abelha">
+
+    <label for="atributoPericias">Valor do atributo usado em Perícias:</label>
+    <input type="number" id="atributoPericias" placeholder="Digite o valor do atributo para Perícias">
+
+    <label for="adicionaisPericia">Quantos Slots de perícia por meta alcançada:</label>
+    <input type="number" id="adicionaisPericia" placeholder="Digite a quantidade de slots adicionais Perícia">
+
+    <label for="poderGeral">Poder Geral do Personagem:</label>
+    <input type="number" id="poderGeral" placeholder="Digite o poder geral do personagem">
+
+    <button onclick="calculate()">Calcular</button>
+
+    <div id="results">
+        <h3>Resultados:</h3>
+        <ul id="resultsList"></ul>
+    </div>
+
+    <script>
+        function calculate() {
+            var atributoOficios = document.getElementById("atributoOficios").value;
+            var adicionaisOficios = document.getElementById("adicionaisOficios").value;
+
+            var atributoVDA = document.getElementById("atributoVDA").value;
+            var adicionaisVDA = document.getElementById("adicionaisVDA").value;
+            var PcA = document.getElementById("piqueComoAbelha").value;
+
+            var atributoPericias = document.getElementById("atributoPericias").value;
+            var adicionaisPericia = document.getElementById("adicionaisPericia").value;
+
+            var poderGeral = document.getElementById("poderGeral").value;
+
+            var numOficiosBase = Math.floor(((atributoOficios / 4000) * adicionaisOficios));
+            var numOficios = 2 + numOficiosBase;
+            var numVDAsBase = Math.floor(((atributoVDA / 4000) * adicionaisVDA) + parseInt(PcA));
+            var numVDAs = 3 + numVDAsBase;
+            var numPericiasBase = Math.floor(((atributoPericias / 500) * adicionaisPericia));        
+            var numPericias = 2 + numPericiasBase;
+            var tecnica = Math.floor(poderGeral / 2000);
+            var edc = Math.floor(poderGeral / 4000);
+
+            displayResults(numOficios, numVDAs, numPericias, tecnica, edc);
+        }
+
+        function displayResults(numOficios, numVDAs, numPericias, tecnica, edc) {
+            var resultsList = document.getElementById("resultsList");
+
+            resultsList.innerHTML = ""; // Clear previous results
+
+            var numOficiosItem = document.createElement("li");
+            numOficiosItem.textContent = "Número de Ofícios: " + numOficios;
+            resultsList.appendChild(numOficiosItem);
+
+            var numVDAsItem = document.createElement("li");
+            numVDAsItem.textContent = "VDA's: " + numVDAs;
+            resultsList.appendChild(numVDAsItem);
+
+            var numPericiasItem = document.createElement("li");
+            numPericiasItem.textContent = "Perícias: " + numPericias;
+            resultsList.appendChild(numPericiasItem);
+
+            var tecnicaItem = document.createElement("li");
+            tecnicaItem.textContent = "Técnica: " + tecnica;
+            resultsList.appendChild(tecnicaItem);
+
+            var edcItem = document.createElement("li");
+            edcItem.textContent = "EDC: " + edc;
+            resultsList.appendChild(edcItem);
+        }
+    </script>
+
+</div>
+
+</body>
