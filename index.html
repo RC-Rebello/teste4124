@@ -56,12 +56,15 @@
 
             var poderGeral = document.getElementById("poderGeral").value;
 
-            var numOficiosBase = Math.floor((atributoOficios / 4000) * adicionaisOficios);
-            var numOficios = 2 + numOficiosBase;
-            var numVDAsBase = Math.floor(((atributoVDA / 4000) * adicionaisVDA) + parseInt(PcA));
-            var numVDAs = 3 + numVDAsBase;
-            var numPericiasBase = Math.floor(((atributoPericias / 500) * adicionaisPericia));        
-            var numPericias = 2 + numPericiasBase;
+            var numOficios1 = Math.floor(atributoOficios / 4000);
+            var numOficios2 = numOficios1 * adicionaisOficios;
+            var numOficios = 2 + numOficios2;
+            var numVDAs1 = Math.floor(atributoVDA / 4000);
+            var numVDAs2 = numVDAs1 * adicionaisVDA;
+            var numVDAs = 3 + numVDAs2 + parseInt(PcA);
+            var numPericias1 = Math.floor(atributoPericias / 500);        
+            var numPericias2 = numPericias1 * adicionaisPericia;
+            var numPericias = 2 + numPericias2;
             var tecnica = Math.floor(poderGeral / 2000);
             var edc = Math.floor(poderGeral / 4000);
 
